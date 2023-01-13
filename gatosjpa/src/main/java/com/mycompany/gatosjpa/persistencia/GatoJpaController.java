@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package com.mycompany.gatosjpa.persistencia;
 
 import com.mycompany.gatosjpa.logica.Gato;
@@ -12,18 +9,20 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
 import javax.persistence.EntityNotFoundException;
+import javax.persistence.Persistence;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
-/**
- *
- * @author florencia
- */
+
 public class GatoJpaController implements Serializable {
 
     public GatoJpaController(EntityManagerFactory emf) {
         this.emf = emf;
     }
+    public GatoJpaController(){
+        emf=Persistence.createEntityManagerFactory("");
+    }
+    
     private EntityManagerFactory emf = null;
 
     public EntityManager getEntityManager() {
