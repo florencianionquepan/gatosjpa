@@ -31,7 +31,7 @@ public class Gato implements Serializable {
     public Gato() {
     }
 
-    public Gato(int id, String nombre, ArrayList<String> srcFoto, String edad, 
+    public Gato(int id, String nombre, ArrayList<String> srcFoto,
                 String sexo, String descripcion, String raza, String color, boolean adoptado, Date fechaNac) {
         this.id = id;
         this.nombre = nombre;
