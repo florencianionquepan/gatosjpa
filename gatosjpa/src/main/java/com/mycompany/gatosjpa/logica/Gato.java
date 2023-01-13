@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -28,11 +29,13 @@ public class Gato implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date fechaNac;
     
+    @OneToOne
+    private Ficha fichaVet;
+    
     public Gato() {
     }
 
-    public Gato(int id, String nombre, ArrayList<String> srcFoto,
-                String sexo, String descripcion, String raza, String color, boolean adoptado, Date fechaNac) {
+    public Gato(int id, String nombre, ArrayList<String> srcFoto, String sexo, String descripcion, String raza, String color, boolean adoptado, Date fechaNac, Ficha fichaVet) {
         this.id = id;
         this.nombre = nombre;
         this.srcFoto = srcFoto;
@@ -42,8 +45,9 @@ public class Gato implements Serializable {
         this.color = color;
         this.adoptado = adoptado;
         this.fechaNac = fechaNac;
+        this.fichaVet = fichaVet;
     }
-
+    
     public int getId() {
         return id;
     }
@@ -114,6 +118,14 @@ public class Gato implements Serializable {
 
     public void setFechaNac(Date fechaNac) {
         this.fechaNac = fechaNac;
+    }
+
+    public Ficha getFichaVet() {
+        return fichaVet;
+    }
+
+    public void setFichaVet(Ficha fichaVet) {
+        this.fichaVet = fichaVet;
     }
 
     @Override
