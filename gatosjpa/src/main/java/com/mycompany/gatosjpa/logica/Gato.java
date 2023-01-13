@@ -1,6 +1,7 @@
 
 package com.mycompany.gatosjpa.logica;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.persistence.Entity;
@@ -11,7 +12,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-public class Gato {
+public class Gato implements Serializable {
     
     @Id
     @GeneratedValue(strategy=GenerationType.SEQUENCE)
