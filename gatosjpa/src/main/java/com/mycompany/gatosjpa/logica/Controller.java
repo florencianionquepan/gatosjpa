@@ -10,4 +10,12 @@ public class Controller {
     public void createCat(Gato cat){
         controlPersis.createCat(cat); 
     }
+    
+    public void destroyCat(int id){
+        controlPersis.destroyCat(id);
+    }
+    
+    public void editCat(Gato cat){
+        controlPersis.editCat(cat);
+    }
 }
