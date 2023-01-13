@@ -4,7 +4,7 @@
  */
 package com.mycompany.gatosjpa;
 
-import com.mycompany.gatosjpa.persistencia.exceptions.ControllerPersistence;
+import com.mycompany.gatosjpa.persistencia.ControllerPersistence;
 
 /**
  *
