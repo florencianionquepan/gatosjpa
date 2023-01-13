@@ -4,6 +4,8 @@
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>com.mycompany.gatosjpa.logica.Gato</class>
     <class>com.mycompany.gatosjpa.logica.Ficha</class>
+    <class>com.mycompany.gatosjpa.logica.Persona</class>
+    <class>com.mycompany.gatosjpa.logica.Voluntario</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/gatosjpa?serverTimezone=UTC"/>
       <property name="javax.persistence.jdbc.user" value="root"/>
