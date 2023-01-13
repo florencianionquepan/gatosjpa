@@ -49,4 +49,47 @@ public class Controller {
     public ArrayList<Ficha> bringFiles(){
         return controlPersis.bringFiles();
     }
+    
+    //-----PERSONA------//
+    public void createPerson(Persona person){
+        controlPersis.createPerson(person); 
+    }
+    
+    public void destroyPerson(String dni){
+        controlPersis.destroyPerson(dni);
+    }
+    
+    public void editPerson(Persona person){
+        controlPersis.editPerson(person);
+    }
+    
+    public Persona bringPerson(String dni){
+        return controlPersis.bringPerson(dni);
+    }
+    
+    public ArrayList<Persona> bringPeople(){
+        return controlPersis.bringPeople();
+    }
+    
+    //-----VOLUNTARIO------//
+    
+    public void createVol(Voluntario vol){
+        controlPersis.createVolunt(vol); 
+    }
+    
+    public void destroyVol(String dni){
+        controlPersis.destroyVolunt(dni);
+    }
+    
+    public void editVol(Voluntario vol){
+        controlPersis.editVol(vol);
+    }
+    
+    public Voluntario bringVol(String dni){
+        return controlPersis.bringVol(dni);
+    }
+    
+    public ArrayList<Voluntario> bringVols(){
+        return controlPersis.bringVols();
+    }
 }
