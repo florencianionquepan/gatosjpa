@@ -27,4 +27,26 @@ public class Controller {
     public ArrayList<Gato> bringCats(){
         return controlPersis.bringCats();
     }
+    
+    //Ficha Veterinaria
+    
+    public void createFile(Ficha file){
+        controlPersis.createFile(file); 
+    }
+    
+    public void destroyFile(int id){
+        controlPersis.destroyFile(id);
+    }
+    
+    public void editFile(Ficha file){
+        controlPersis.editFile(file);
+    }
+    
+    public Ficha bringFile(int id){
+        return controlPersis.bringFile(id);
+    }
+    
+    public ArrayList<Ficha> bringFiles(){
+        return controlPersis.bringFiles();
+    }
 }
