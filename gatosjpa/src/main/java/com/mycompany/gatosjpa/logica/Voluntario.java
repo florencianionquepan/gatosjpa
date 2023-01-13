@@ -5,8 +5,10 @@ import java.util.Date;
 import java.util.LinkedList;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
+import javax.persistence.PrimaryKeyJoinColumn;
 
 @Entity
+@PrimaryKeyJoinColumn(referencedColumnName="volunt_persona")
 public class Voluntario extends Persona{
     private Date fechaIngreso;
     @OneToMany
