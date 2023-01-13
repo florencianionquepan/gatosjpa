@@ -26,10 +26,9 @@ public class VoluntarioJpaController implements Serializable {
     public VoluntarioJpaController(EntityManagerFactory emf) {
         this.emf = emf;
     }
-    public VoluntarioJpaController(){
+    public VoluntarioJpaController() {
         emf=Persistence.createEntityManagerFactory("gatosjpaPU");
     }
-    
     private EntityManagerFactory emf = null;
 
     public EntityManager getEntityManager() {
