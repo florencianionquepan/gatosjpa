@@ -4,6 +4,8 @@
  */
 package com.mycompany.gatosjpa;
 
+import com.mycompany.gatosjpa.persistencia.exceptions.ControllerPersistence;
+
 /**
  *
  * @author florencia
@@ -14,7 +16,8 @@ public class GatosJpa {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        //De esta forma se van a crear todas las tablas que tenga hasta el momento
+        ControllerPersistence controlPersis=new ControllerPersistence();
     }
     
 }
