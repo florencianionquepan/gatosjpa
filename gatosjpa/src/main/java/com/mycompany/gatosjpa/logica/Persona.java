@@ -8,10 +8,10 @@ import javax.persistence.Id;
 @Entity
 public class Persona implements Serializable {
     @Id
-    private String dni;
-    private String nombre;
-    private String apellido;
-    private String telefono;
+    protected String dni;
+    protected String nombre;
+    protected String apellido;
+    protected String telefono;
 
     public Persona(String dni, String nombre, String apellido, String telefono) {
         this.dni = dni;
