@@ -20,7 +20,7 @@ public class GatoJpaController implements Serializable {
         this.emf = emf;
     }
     public GatoJpaController(){
-        emf=Persistence.createEntityManagerFactory("");
+        emf=Persistence.createEntityManagerFactory("gatosjpaPU");
     }
     
     private EntityManagerFactory emf = null;
