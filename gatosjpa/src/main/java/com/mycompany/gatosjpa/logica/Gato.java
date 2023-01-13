@@ -115,6 +115,15 @@ public class Gato implements Serializable {
     public void setFechaNac(Date fechaNac) {
         this.fechaNac = fechaNac;
     }
+
+    @Override
+    public String toString() {
+        return "Gato{" + "id=" + id + ", nombre=" + nombre 
+                + ", srcFoto=" + srcFoto + ", sexo=" + sexo 
+                + ", descripcion=" + descripcion + ", raza=" + raza 
+                + ", color=" + color + ", adoptado=" + adoptado 
+                + ", fechaNac=" + fechaNac + '}';
+    }
     
     
     
