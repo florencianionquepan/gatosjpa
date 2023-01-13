@@ -3,7 +3,8 @@ package com.mycompany.gatosjpa.persistencia;
 
 import com.mycompany.gatosjpa.logica.Ficha;
 import com.mycompany.gatosjpa.logica.Gato;
-import com.mycompany.gatosjpa.persistencia.GatoJpaController;
+import com.mycompany.gatosjpa.logica.Persona;
+import com.mycompany.gatosjpa.logica.Voluntario;
 import com.mycompany.gatosjpa.persistencia.exceptions.NonexistentEntityException;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +15,8 @@ import java.util.logging.Logger;
 public class ControllerPersistence {
     GatoJpaController gatoJpa= new GatoJpaController();
     FichaJpaController fichaJpa=new FichaJpaController();
+    PersonaJpaController personJpa=new PersonaJpaController();
+    VoluntarioJpaController voluntJpa=new VoluntarioJpaController();
 
     public void createCat(Gato cat) {
         gatoJpa.create(cat);
@@ -75,5 +78,78 @@ public class ControllerPersistence {
        List <Ficha> list=fichaJpa.findFichaEntities();
         ArrayList <Ficha> listFichas=new ArrayList<Ficha>(list);
         return listFichas;
+    }
+    
+    //------PERSONA------//
+
+    public void createPerson(Persona person) {
+        try {
+            personJpa.create(person);
+        } catch (Exception ex) {
+            Logger.getLogger(ControllerPersistence.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+
+    public void destroyPerson(String dni) {
+        try {
+            personJpa.destroy(dni);
+        } catch (NonexistentEntityException ex) {
+            Logger.getLogger(ControllerPersistence.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void editPerson(Persona person) {
+        try {
+            personJpa.edit(person);
+        } catch (Exception ex) {
+            Logger.getLogger(ControllerPersistence.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public Persona bringPerson(String dni) {
+        return personJpa.findPersona(dni);
+    }
+
+    public ArrayList<Persona> bringPeople() {
+        List <Persona> list=personJpa.findPersonaEntities();
+        ArrayList <Persona> listPeople=new ArrayList<Persona>(list);
+        return listPeople;
+    }
+
+    //------VOLUNTARIO------//
+
+    public void createVolunt(Voluntario vol) {
+        try {
+            voluntJpa.create(vol);
+        } catch (Exception ex) {
+            Logger.getLogger(ControllerPersistence.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void destroyVolunt(String dni) {
+        try {
+            voluntJpa.destroy(dni);
+        } catch (NonexistentEntityException ex) {
+            Logger.getLogger(ControllerPersistence.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void editVol(Voluntario vol) {
+        try {
+            voluntJpa.edit(vol);
+        } catch (Exception ex) {
+            Logger.getLogger(ControllerPersistence.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public Voluntario bringVol(String dni) {
+        return voluntJpa.findVoluntario(dni);
+    }
+
+    public ArrayList<Voluntario> bringVols() {
+        List <Voluntario> list=voluntJpa.findVoluntarioEntities();
+        ArrayList <Voluntario> listVols=new ArrayList<Voluntario>(list);
+        return listVols;
     }
 }
