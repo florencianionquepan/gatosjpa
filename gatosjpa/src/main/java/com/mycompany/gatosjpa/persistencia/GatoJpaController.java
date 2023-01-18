@@ -1,28 +1,34 @@
-
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package com.mycompany.gatosjpa.persistencia;
 
+import com.mycompany.gatosjpa.exceptions.NonexistentEntityException;
 import com.mycompany.gatosjpa.logica.Gato;
-import com.mycompany.gatosjpa.persistencia.exceptions.NonexistentEntityException;
 import java.io.Serializable;
+import javax.persistence.Query;
+import javax.persistence.EntityNotFoundException;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
+import com.mycompany.gatosjpa.logica.Voluntario;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.Query;
-import javax.persistence.EntityNotFoundException;
 import javax.persistence.Persistence;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Root;
 
-
+/**
+ *
+ * @author florencia
+ */
 public class GatoJpaController implements Serializable {
 
     public GatoJpaController(EntityManagerFactory emf) {
         this.emf = emf;
     }
-    public GatoJpaController(){
+    public GatoJpaController() {
         emf=Persistence.createEntityManagerFactory("gatosjpaPU");
     }
-    
     private EntityManagerFactory emf = null;
 
     public EntityManager getEntityManager() {
@@ -34,7 +40,16 @@ public class GatoJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
+            Voluntario volunt = gato.getVolunt();
+            if (volunt != null) {
+                volunt = em.getReference(volunt.getClass(), volunt.getDni());
+                gato.setVolunt(volunt);
+            }
             em.persist(gato);
+            if (volunt != null) {
+                volunt.getGatos().add(gato);
+                volunt = em.merge(volunt);
+            }
             em.getTransaction().commit();
         } finally {
             if (em != null) {
@@ -48,7 +63,22 @@ public class GatoJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
+            Gato persistentGato = em.find(Gato.class, gato.getId());
+            Voluntario voluntOld = persistentGato.getVolunt();
+            Voluntario voluntNew = gato.getVolunt();
+            if (voluntNew != null) {
+                voluntNew = em.getReference(voluntNew.getClass(), voluntNew.getDni());
+                gato.setVolunt(voluntNew);
+            }
             gato = em.merge(gato);
+            if (voluntOld != null && !voluntOld.equals(voluntNew)) {
+                voluntOld.getGatos().remove(gato);
+                voluntOld = em.merge(voluntOld);
+            }
+            if (voluntNew != null && !voluntNew.equals(voluntOld)) {
+                voluntNew.getGatos().add(gato);
+                voluntNew = em.merge(voluntNew);
+            }
             em.getTransaction().commit();
         } catch (Exception ex) {
             String msg = ex.getLocalizedMessage();
@@ -77,6 +107,11 @@ public class GatoJpaController implements Serializable {
                 gato.getId();
             } catch (EntityNotFoundException enfe) {
                 throw new NonexistentEntityException("The gato with id " + id + " no longer exists.", enfe);
+            }
+            Voluntario volunt = gato.getVolunt();
+            if (volunt != null) {
+                volunt.getGatos().remove(gato);
+                volunt = em.merge(volunt);
             }
             em.remove(gato);
             em.getTransaction().commit();
