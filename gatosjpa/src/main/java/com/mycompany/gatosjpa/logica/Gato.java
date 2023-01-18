@@ -4,14 +4,7 @@ package com.mycompany.gatosjpa.logica;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.*;
 
 @Entity
 public class Gato implements Serializable {
@@ -35,6 +28,9 @@ public class Gato implements Serializable {
     
     @ManyToOne
     private Voluntario volunt;
+
+    @OneToMany(mappedBy="gato")
+    private ArrayList<Solicitante> ListaSolic;
     public Gato() {
     }
 
@@ -52,16 +48,6 @@ public class Gato implements Serializable {
         this.volunt = volunt;
     }
 
-    public Voluntario getVolunt() {
-        return volunt;
-    }
-
-    public void setVolunt(Voluntario volunt) {
-        this.volunt = volunt;
-    }
-
-    
-    
     public int getId() {
         return id;
     }
@@ -140,6 +126,22 @@ public class Gato implements Serializable {
 
     public void setFichaVet(Ficha fichaVet) {
         this.fichaVet = fichaVet;
+    }
+
+    public Voluntario getVolunt() {
+        return volunt;
+    }
+
+    public void setVolunt(Voluntario volunt) {
+        this.volunt = volunt;
+    }
+
+    public ArrayList<Solicitante> getListaSolic() {
+        return ListaSolic;
+    }
+
+    public void setListaSolic(ArrayList<Solicitante> listaSolic) {
+        ListaSolic = listaSolic;
     }
 
     @Override
