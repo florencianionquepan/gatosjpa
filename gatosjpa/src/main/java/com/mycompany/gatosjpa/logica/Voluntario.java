@@ -3,15 +3,13 @@ package com.mycompany.gatosjpa.logica;
 
 import java.util.Date;
 import java.util.LinkedList;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.*;
 
 @Entity
-@PrimaryKeyJoinColumn(referencedColumnName="volunt_persona")
+@DiscriminatorValue("VOL")
 public class Voluntario extends Persona{
     private Date fechaIngreso;
-    @OneToMany
+    @OneToMany (mappedBy="volunt")
     private LinkedList<Gato> listaGatos;
 
     public Voluntario(String dni, String nombre, String apellido, String telefono,
