@@ -92,4 +92,26 @@ public class Controller {
     public ArrayList<Voluntario> bringVols(){
         return controlPersis.bringVols();
     }
+
+    //-----SOLICITANTE------//
+
+    public void createSol(Solicitante sol){
+        controlPersis.createSol(sol);
+    }
+
+    public void destroySol(String dni){
+        controlPersis.destroySol(dni);
+    }
+
+    public void editSol(Solicitante sol){
+        controlPersis.editSol(sol);
+    }
+
+    public Solicitante bringSol(String dni){
+        return controlPersis.bringSol(dni);
+    }
+
+    public ArrayList<Solicitante> bringSols(){
+        return controlPersis.bringSols();
+    }
 }

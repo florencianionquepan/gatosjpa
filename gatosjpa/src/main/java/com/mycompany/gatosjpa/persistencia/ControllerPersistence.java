@@ -1,10 +1,7 @@
 
 package com.mycompany.gatosjpa.persistencia;
 
-import com.mycompany.gatosjpa.logica.Ficha;
-import com.mycompany.gatosjpa.logica.Gato;
-import com.mycompany.gatosjpa.logica.Persona;
-import com.mycompany.gatosjpa.logica.Voluntario;
+import com.mycompany.gatosjpa.logica.*;
 import com.mycompany.gatosjpa.persistencia.exceptions.NonexistentEntityException;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +14,7 @@ public class ControllerPersistence {
     FichaJpaController fichaJpa=new FichaJpaController();
     PersonaJpaController personJpa=new PersonaJpaController();
     VoluntarioJpaController voluntJpa=new VoluntarioJpaController();
+    SolicitanteJpaController solJpa=new SolicitanteJpaController();
 
     public void createCat(Gato cat) {
         gatoJpa.create(cat);
@@ -25,7 +23,7 @@ public class ControllerPersistence {
     public void destroyCat(int id) {
         try {
             gatoJpa.destroy(id);
-        } catch (NonexistentEntityException ex) {
+        } catch (Exception ex) {
             Logger.getLogger(ControllerPersistence.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -151,5 +149,39 @@ public class ControllerPersistence {
         List <Voluntario> list=voluntJpa.findVoluntarioEntities();
         ArrayList <Voluntario> listVols=new ArrayList<Voluntario>(list);
         return listVols;
+    }
+
+    public void createSol(Solicitante sol) {
+        try {
+            solJpa.create(sol);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void destroySol(String dni) {
+        try {
+            solJpa.destroy(dni);
+        } catch (com.mycompany.gatosjpa.exceptions.NonexistentEntityException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void editSol(Solicitante sol) {
+        try {
+            solJpa.edit(sol);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public Solicitante bringSol(String dni) {
+        return solJpa.findSolicitante(dni);
+    }
+
+    public ArrayList<Solicitante> bringSols() {
+        List <Solicitante> list=solJpa.findSolicitanteEntities();
+        ArrayList <Solicitante> listSols=new ArrayList<Solicitante>(list);
+        return listSols;
     }
 }
