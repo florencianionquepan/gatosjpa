@@ -12,9 +12,13 @@ public class Solicitante extends Persona{
     @ManyToOne
     private Gato gato;
 
-    public Solicitante(String dni, String nombre, String apellido, String telefono, String domicilio) {
+    public Solicitante() {
+    }
+
+    public Solicitante(String dni, String nombre, String apellido, String telefono, String domicilio,Gato gato) {
         super(dni, nombre, apellido, telefono);
         this.domicilio = domicilio;
+        this.gato=gato;
     }
 
     public String getDomicilio() {
