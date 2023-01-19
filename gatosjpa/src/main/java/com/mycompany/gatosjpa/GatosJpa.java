@@ -1,22 +1,12 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
- */
 package com.mycompany.gatosjpa;
 
-import com.mycompany.gatosjpa.logica.Controller;
-import com.mycompany.gatosjpa.logica.Ficha;
-import com.mycompany.gatosjpa.logica.Gato;
-import com.mycompany.gatosjpa.logica.Persona;
-import com.mycompany.gatosjpa.logica.Voluntario;
+import com.mycompany.gatosjpa.logica.*;
+
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedList;
 
-/**
- *
- * @author florencia
- */
 public class GatosJpa {
 
     /**
@@ -52,20 +42,37 @@ public class GatosJpa {
         //Persona Florencia=new Persona("36192394","Flower","Nonque","4143822");
         
         //3)CREO VOLUNTARIO
-        Voluntario volunt=new Voluntario("36192394","Flower","Nonque","4143822",new Date(),listaGatis);
+        Voluntario volunt=new Voluntario("36192394","Flower","Nonque","4143822", LocalDate.of(2022,12,01),listaGatis);
         control.createVol(volunt);
-        
+
         //4)Creo los gatos a cargo. 
         Ficha fichaVet1=new Ficha(1,true,false,false);
         control.createFile(fichaVet1);
         Ficha fichaVet2=new Ficha(2,true,false,false);
         control.createFile(fichaVet2);
-        
-        Gato catEmma=new Gato(6,"Emma",new ArrayList(),"hembra","Gatita loca","pardo","naranja",false, new Date(),fichaVet1,volunt);
+
+        //A gato ya le agrego la lista de solicitantes en su constructor que siempre estara vacia en un principio
+        ArrayList<Solicitante> listaSol=new ArrayList<Solicitante>();
+        Gato catEmma=new Gato(1,"Emma",new ArrayList(),"hembra","Gatita loca","pardo","naranja",false,
+                                LocalDate.of(2016,8,22),fichaVet1,volunt,listaSol);
         control.createCat(catEmma);
-        Gato catIgor=new Gato(7,"Igor",new ArrayList(),"macho","Gatita loca","pardo","negro",true, new Date(),fichaVet2,volunt);
+        Gato catIgor=new Gato(2,"Igor",new ArrayList(),
+                        "macho","Gatito loco","pardo","negro",
+                true, LocalDate.of(2022,8,20),fichaVet2,volunt,listaSol);
         control.createCat(catIgor);
-        
+
+        //CREAR SOLICITANTE
+        //Para que en la base de datos el solicitante tenga como atributo un gato, se debe construir el objeto
+        //con el gato. No tiene sentido en la realidad ya que primero el solicitante se crea, luego vera si
+        //quiere solicitar un gato o no-
+        Solicitante Marcos=new Solicitante("92425108","Marcos","Papaleo","4635800","Santa Fe 200",catEmma);
+        control.createSol(Marcos);
+        //Ahora Marcos una vez creado va a solicitar la adopcion de Emma
+        //listaSol.add(Marcos);
+        //catEmma.setListaSolic(listaSol);
+
+
+
         listaGatis.add(catEmma);
         listaGatis.add(catIgor);
         //System.out.println("----GATA LOCA----");
