@@ -62,16 +62,18 @@ public class GatosJpa {
         control.createCat(catIgor);
 
         //CREAR SOLICITANTE
-        //Para que en la base de datos el solicitante tenga como atributo un gato, se debe construir el objeto
+        //Para que en la base de datos el solicitante tenga como atributo un gato, deberia construir el objeto
         //con el gato. No tiene sentido en la realidad ya que primero el solicitante se crea, luego vera si
-        //quiere solicitar un gato o no-
-        Solicitante Marcos=new Solicitante("92425108","Marcos","Papaleo","4635800","Santa Fe 200",catEmma);
+        //quiere solicitar un gato o no- Elimino del constructor al gato. Luego se agregara editando el objeto
+        Solicitante Marcos=new Solicitante("92425108","Marcos","Papaleo","4635800","Santa Fe 200");
         control.createSol(Marcos);
         //Ahora Marcos una vez creado va a solicitar la adopcion de Emma
-        //listaSol.add(Marcos);
-        //catEmma.setListaSolic(listaSol);
+        listaSol.add(Marcos);
+        catEmma.setListaSolic(listaSol);
+        control.editCat(catEmma);
 
-
+        Marcos.setGato(catEmma);
+        control.editSol(Marcos);
 
         listaGatis.add(catEmma);
         listaGatis.add(catIgor);
