@@ -1,6 +1,7 @@
 
 package com.mycompany.gatosjpa.logica;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.LinkedList;
 import javax.persistence.*;
@@ -8,12 +9,12 @@ import javax.persistence.*;
 @Entity
 @DiscriminatorValue("VOL")
 public class Voluntario extends Persona{
-    private Date fechaIngreso;
+    private LocalDate fechaIngreso;
     @OneToMany (mappedBy="volunt")
     private LinkedList<Gato> listaGatos;
 
     public Voluntario(String dni, String nombre, String apellido, String telefono,
-                        Date fechaIngreso, LinkedList<Gato> gatos) {
+                        LocalDate fechaIngreso, LinkedList<Gato> gatos) {
         super(dni, nombre, apellido, telefono);
         this.fechaIngreso = fechaIngreso;
         this.listaGatos = gatos;
@@ -22,11 +23,11 @@ public class Voluntario extends Persona{
     public Voluntario() {
     }
 
-    public Date getFechaIngreso() {
+    public LocalDate getFechaIngreso() {
         return fechaIngreso;
     }
 
-    public void setFechaIngreso(Date fechaIngreso) {
+    public void setFechaIngreso(LocalDate fechaIngreso) {
         this.fechaIngreso = fechaIngreso;
     }
 

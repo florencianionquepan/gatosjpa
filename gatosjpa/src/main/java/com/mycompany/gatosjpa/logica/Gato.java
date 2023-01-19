@@ -2,6 +2,7 @@
 package com.mycompany.gatosjpa.logica;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import javax.persistence.*;
@@ -19,9 +20,8 @@ public class Gato implements Serializable {
     private String raza;
     private String color;
     private boolean adoptado;
-    
-    @Temporal(TemporalType.DATE)
-    private Date fechaNac;
+
+    private LocalDate fechaNac;
     
     @OneToOne
     private Ficha fichaVet;
@@ -34,7 +34,9 @@ public class Gato implements Serializable {
     public Gato() {
     }
 
-    public Gato(int id, String nombre, ArrayList<String> srcFoto, String sexo, String descripcion, String raza, String color, boolean adoptado, Date fechaNac, Ficha fichaVet, Voluntario volunt) {
+    public Gato(int id, String nombre, ArrayList<String> srcFoto, String sexo, String descripcion,
+                String raza, String color, boolean adoptado, LocalDate fechaNac, Ficha fichaVet,
+                Voluntario volunt, ArrayList<Solicitante> listaSolic) {
         this.id = id;
         this.nombre = nombre;
         this.srcFoto = srcFoto;
@@ -46,6 +48,7 @@ public class Gato implements Serializable {
         this.fechaNac = fechaNac;
         this.fichaVet = fichaVet;
         this.volunt = volunt;
+        this.ListaSolic=listaSolic;
     }
 
     public int getId() {
@@ -112,11 +115,11 @@ public class Gato implements Serializable {
         this.adoptado = adoptado;
     }
 
-    public Date getFechaNac() {
+    public LocalDate getFechaNac() {
         return fechaNac;
     }
 
-    public void setFechaNac(Date fechaNac) {
+    public void setFechaNac(LocalDate fechaNac) {
         this.fechaNac = fechaNac;
     }
 
