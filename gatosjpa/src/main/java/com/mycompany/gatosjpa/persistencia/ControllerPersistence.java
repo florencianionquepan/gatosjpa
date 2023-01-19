@@ -162,7 +162,7 @@ public class ControllerPersistence {
     public void destroySol(String dni) {
         try {
             solJpa.destroy(dni);
-        } catch (com.mycompany.gatosjpa.exceptions.NonexistentEntityException e) {
+        } catch (NonexistentEntityException e) {
             throw new RuntimeException(e);
         }
     }

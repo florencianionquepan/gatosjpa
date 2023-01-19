@@ -4,7 +4,7 @@
  */
 package com.mycompany.gatosjpa.persistencia;
 
-import com.mycompany.gatosjpa.exceptions.NonexistentEntityException;
+import com.mycompany.gatosjpa.persistencia.exceptions.NonexistentEntityException;
 import com.mycompany.gatosjpa.logica.Gato;
 import java.io.Serializable;
 import javax.persistence.Query;
