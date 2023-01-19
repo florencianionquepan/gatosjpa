@@ -15,10 +15,9 @@ public class Solicitante extends Persona{
     public Solicitante() {
     }
 
-    public Solicitante(String dni, String nombre, String apellido, String telefono, String domicilio,Gato gato) {
+    public Solicitante(String dni, String nombre, String apellido, String telefono, String domicilio) {
         super(dni, nombre, apellido, telefono);
         this.domicilio = domicilio;
-        this.gato=gato;
     }
 
     public String getDomicilio() {
